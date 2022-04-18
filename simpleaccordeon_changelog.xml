@@ -1,0 +1,38 @@
+<changelogs>
+	<changelog>
+		<element>simpleaccordeon</element>
+		<type>plugin</type>
+		<group>content</group>
+		<version>2.0.2</version>
+        <note>
+            <item>Update : 02/04/2022</item>
+        </note>
+         <fix>
+            <item>Collapsed color not working </item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>simpleaccordeon</element>
+		<type>plugin</type>
+		<group>content</group>
+		<version>2.0.1</version>
+        <note>
+            <item>Update : 01/11/2021</item>
+        </note>
+         <addition>
+            <item>Link to plugin on install</item>
+        </addition>
+	</changelog>
+	<changelog>
+		<element>simpleaccordeon</element>
+		<type>plugin</type>
+		<group>content</group>
+		<version>2.0.0</version>
+        <note>
+            <item>Update : 30/10/2021</item>
+        </note>
+         <addition>
+            <item>Joomla 4.0 compatibility</item>
+        </addition>
+	</changelog>
+</changelogs>

@@ -1,0 +1,30 @@
+/**
+ * @version		2.0.2
+ * @package		Simple Accordeon content plugin
+ * @author		ConseilGouz
+ * @copyright	Copyright (C) 2022 ConseilGouz. All rights reserved.
+ * @license		GNU/GPL v2
+ **/
+button.accordeon {
+	cursor: pointer;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+}
+button.accordeon:after {
+	content: '\02796';
+	color: #777;
+	float: right;
+	margin-left: 5px;
+}
+button.accordeon.collapsed:after {
+	content: '\2795';
+}
+div.acc_panel {
+	padding: 0 18px;
+	overflow: hidden;
+	display: none;
+}

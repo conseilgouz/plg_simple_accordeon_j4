@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.0" type="plugin" group="content" method="upgrade">
+	<name>Contenu - Accordeon dans les articles</name>
+	<author>ConseilGouz</author>
+	<creationDate>November 2021</creationDate>
+	<copyright>Copyright (C) 2022 ConseilGouz. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
+	<authorUrl>www.conseilgouz.com</authorUrl>
+	<version>2.0.2</version>
+	<description>SPACCDESC</description>
+	<files>
+		<filename plugin="simpleaccordeon">simpleaccordeon.php</filename>
+		<filename>simpleaccordeon.xml</filename>		
+		<filename>index.html</filename>
+	</files>
+	<media destination="simpleaccordeon" folder="media">
+		<folder>css</folder>
+		<filename>index.html</filename>
+	</media>
+	<scriptfile>script.php</scriptfile>
+	<changelogurl>https://www.conseilgouz.com/updates/simpleaccordeon_changelog.xml</changelogurl>
+	<languages>
+		<language tag="fr-FR">language/fr-FR/plg_content_simpleaccordeon.ini</language>
+		<language tag="fr-FR">language/fr-FR/plg_content_simpleaccordeon.sys.ini</language>
+		<language tag="en-GB">language/en-GB/plg_content_simpleaccordeon.ini</language>
+		<language tag="en-GB">language/en-GB/plg_content_simpleaccordeon.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="shortcode" type="text" default="accordeon"
+					label="CG_SHORTCODE"
+					description="CG_SHORTCODE_DESC" />			
+				<field name="backgroundcolor" type="color" default="#eeeeee"
+					label="SPACCBUTTONCOLOR"
+					description="SPACCBUTTONCOLORDESC" />			
+				<field name="selbgcolor" type="color" default="#c7c7bf"
+					label="SPACCBUTTONCOLORSEL"
+					description="SPACCBUTTONCOLORSELDESC" />			
+				<field name="chrcolor" type="color" default="#000000"
+					label="SPACCTEXTCOLOR"
+					description="SPACCTEXTCOLORDESC" />					
+				<field name="fontsize" type="text" default="15px"
+					label="CGFONTSIZE"
+					description="CGFONTSIZEDESC" />					
+			</fieldset>
+		</fields>
+	</config>
+    <updateservers>
+        <server type="extension" name="simpleaccordeon">https://www.conseilgouz.com/updates/simple_accordeon_update.xml</server>
+    </updateservers>
+	
+</extension>
