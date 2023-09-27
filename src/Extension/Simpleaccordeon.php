@@ -1,18 +1,19 @@
 <?php
 /**
- * @version		2.0.2
+ * @version		2.1.0
  * @package		Simple Accordeon content plugin
  * @author		ConseilGouz
- * @copyright	Copyright (C) 2022 ConseilGouz. All rights reserved.
+ * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
  * @license		GNU/GPL v2; see LICENSE.php
  **/
+namespace ConseilGouz\Plugin\Content\Simpleaccordeon\Extension;
 // no direct access
 defined( '_JEXEC' ) or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\HTML\HTMLHelper;
 
-class plgContentSimpleAccordeon extends CMSPlugin {
+class Simpleaccordeon extends CMSPlugin {
 	public function onContentPrepare( $context, &$article, &$params, $page = 0 )
 	{
 		// first figure out whether to use article id or item_id:

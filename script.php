@@ -1,18 +1,19 @@
 <?php
 /**
 * Simple Accordeon Plugin  - Joomla 4.0.0 Module 
-* Version			: 2.0.2
+* Version			: 2.1.0
 * Package			: Simple Accordeon Plugin
-* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
-use Joomla\CMS\Filesystem\File;
+use Joomla\Filesystem\File;
+use Joomla\CMS\Log\Log;
 
 class plgcontentsimpleaccordeonInstallerScript
 {
@@ -23,6 +24,7 @@ class plgcontentsimpleaccordeonInstallerScript
 	private $extname                 = 'simpleaccordeon';
 	private $previous_version        = '';
 	private $dir           = null;
+	private $lang;
 	private $installerName = 'plgcontentsimpleaccordeoninstaller';
 	public function __construct()
 	{
@@ -92,6 +94,20 @@ class plgcontentsimpleaccordeonInstallerScript
 				}
 			}
 		}
+		// remove obsolete update sites
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
+		$db->setQuery($query);
+		$db->execute();
+		// Simple Isotope is now on Github
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/simple_accordeon%"');
+		$db->setQuery($query);
+		$db->execute();
+		
 		$db = Factory::getDbo();
         $conditions = array(
             $db->qn('type') . ' = ' . $db->q('plugin'),
@@ -106,7 +122,7 @@ class plgcontentsimpleaccordeonInstallerScript
 	        $db->execute();
         }
         catch (RuntimeException $e) {
-            JLog::add('unable to enable plugin simpleaccordeon', JLog::ERROR, 'jerror');
+            Log::add('unable to enable plugin simpleaccordeon', Log::ERROR, 'jerror');
         }
 
 	}
@@ -146,7 +162,7 @@ class plgcontentsimpleaccordeonInstallerScript
 	}
 	private function uninstallInstaller()
 	{
-		if ( ! JFolder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([

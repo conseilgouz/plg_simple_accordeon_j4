@@ -7,19 +7,21 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>2.0.2</version>
+	<version>2.1.0</version>
 	<description>SPACCDESC</description>
+	<namespace path="src">ConseilGouz\Plugin\Content\Simpleaccordeon</namespace>	
 	<files>
-		<filename plugin="simpleaccordeon">simpleaccordeon.php</filename>
+		<folder plugin="simpleaccordeon">services</folder>
 		<filename>simpleaccordeon.xml</filename>		
 		<filename>index.html</filename>
+		<folder>src</folder>
 	</files>
 	<media destination="simpleaccordeon" folder="media">
 		<folder>css</folder>
 		<filename>index.html</filename>
 	</media>
 	<scriptfile>script.php</scriptfile>
-	<changelogurl>https://www.conseilgouz.com/updates/simpleaccordeon_changelog.xml</changelogurl>
+	<changelogurl>https://raw.githubusercontent.com/conseilgouz/plg_simple_accordeon_j4/master/simpleaccordeon_changelog.xml</changelogurl>
 	<languages>
 		<language tag="fr-FR">language/fr-FR/plg_content_simpleaccordeon.ini</language>
 		<language tag="fr-FR">language/fr-FR/plg_content_simpleaccordeon.sys.ini</language>
@@ -29,7 +31,8 @@
 	
 	<config>
 		<fields name="params">
-			<fieldset name="basic">
+			<fieldset name="basic"  addfieldprefix="ConseilGouz\Plugin\Content\Simpleaccordeon\Field">
+				<field name="version" type="version"  margintop="-3em"  extension="simpleaccordeon" />
 				<field name="shortcode" type="text" default="accordeon"
 					label="CG_SHORTCODE"
 					description="CG_SHORTCODE_DESC" />			
@@ -49,7 +52,7 @@
 		</fields>
 	</config>
     <updateservers>
-        <server type="extension" name="simpleaccordeon">https://www.conseilgouz.com/updates/simple_accordeon_update.xml</server>
+        <server type="extension" name="simpleaccordeon">https://raw.githubusercontent.com/conseilgouz/updates_github/master/simple_accordeon_update.xml</server>
     </updateservers>
 	
 </extension>

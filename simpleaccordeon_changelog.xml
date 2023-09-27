@@ -3,6 +3,22 @@
 		<element>simpleaccordeon</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.1.0</version>
+        <note>
+            <item>Update : 27/09/2023</item>
+        </note>
+         <fix>
+            <item>Joomla 5 compatibility</item>
+        </fix>
+		<change>
+			<item>Plugin as service provider</item>
+			<item>Update/Changelog on github</item>
+		</change>
+	</changelog>
+	<changelog>
+		<element>simpleaccordeon</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.0.2</version>
         <note>
             <item>Update : 02/04/2022</item>
