@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.1.0
+ * @version		2.1.2
  * @package		Simple Accordeon content plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
- * @license		GNU/GPL v2; see LICENSE.php
+ * @license		GNU/GPL v3; see LICENSE.php
  **/
 defined('_JEXEC') or die;
 
@@ -31,8 +31,9 @@ return new class () implements ServiceProviderInterface {
         $container->set(
             PluginInterface::class,
             function (Container $container) {
-                $plugin     = new Simpleaccordeon(
-                    $container->get(DispatcherInterface::class),
+                $dispatcher = $container->get(DispatcherInterface::class);
+				$plugin     = new Simpleaccordeon(
+                    $dispatcher,
                     (array) PluginHelper::getPlugin('content', 'simpleaccordeon')
                 );
                 $plugin->setApplication(Factory::getApplication());

@@ -1,10 +1,10 @@
 <?php
 /**
-* Simple Accordeon Plugin  - Joomla 4.0.0 Module 
-* Version			: 2.1.0
+* Simple Accordeon Plugin  - Joomla 4.x/5.x plugin
+* Version			: 2.1.2
 * Package			: Simple Accordeon Plugin
 * copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
@@ -18,7 +18,7 @@ use Joomla\CMS\Log\Log;
 class plgcontentsimpleaccordeonInstallerScript
 {
 	private $min_joomla_version      = '4.0.0';
-	private $min_php_version         = '7.2';
+	private $min_php_version         = '7.4';
 	private $name                    = 'Plugin Simple Accordeon';
 	private $exttype                 = 'plugin';
 	private $extname                 = 'simpleaccordeon';
