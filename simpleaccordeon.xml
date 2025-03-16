@@ -2,12 +2,12 @@
 <extension version="4.0" type="plugin" group="content" method="upgrade">
 	<name>Contenu - Accordeon dans les articles</name>
 	<author>ConseilGouz</author>
-	<creationDate>2023-10-11</creationDate>
-	<copyright>Copyright (C) 2023 ConseilGouz. All rights reserved.</copyright>
+	<creationDate>2025-03-16</creationDate>
+	<copyright>Copyright (C) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>2.1.2</version>
+	<version>2.2.0</version>
 	<description>SPACCDESC</description>
 	<namespace path="src">ConseilGouz\Plugin\Content\Simpleaccordeon</namespace>	
 	<files>
@@ -31,20 +31,33 @@
 	
 	<config>
 		<fields name="params">
-			<fieldset name="basic"  addfieldprefix="ConseilGouz\Plugin\Content\Simpleaccordeon\Field">
+			<fieldset name="basic"
+				addfieldprefix="ConseilGouz\Plugin\Content\Simpleaccordeon\Field"
+				addruleprefix="ConseilGouz\Plugin\Content\Simpleaccordeon\Rule">
 				<field name="version" type="version"  margintop="-3em"  extension="simpleaccordeon" />
 				<field name="shortcode" type="text" default="accordeon"
 					label="CG_SHORTCODE"
-					description="CG_SHORTCODE_DESC" />			
-				<field name="backgroundcolor" type="color" default="#eeeeee"
-					label="SPACCBUTTONCOLOR"
-					description="SPACCBUTTONCOLORDESC" />			
-				<field name="selbgcolor" type="color" default="#c7c7bf"
-					label="SPACCBUTTONCOLORSEL"
-					description="SPACCBUTTONCOLORSELDESC" />			
-				<field name="chrcolor" type="color" default="#000000"
-					label="SPACCTEXTCOLOR"
-					description="SPACCTEXTCOLORDESC" />					
+					description="CG_SHORTCODE_DESC" />	
+				<field name="type_color" type="radio" class="btn-group"  
+					label="SPACCBUTTON_TYPE_COLOR" description="SPACCBUTTON_TYPE_COLOR_DESC" default="pick">
+					<option value="pick">SPACCBUTTON_COLOR_PICK</option>
+					<option value="var">SPACCBUTTON_COLOR_VAR</option>
+				</field>
+				<field showon="type_color:pick" name="backgroundcolor" type="color" default="#eeeeee"
+					label="SPACCBUTTONCOLOR" description="SPACCBUTTONCOLORDESC" />			
+				<field showon="type_color:pick" name="selbgcolor" type="color" default="#c7c7bf"
+					label="SPACCBUTTONCOLORSEL"	description="SPACCBUTTONCOLORSELDESC" />			
+				<field showon="type_color:pick" name="chrcolor" type="color" default="#000000"
+					label="SPACCTEXTCOLOR" description="SPACCTEXTCOLORDESC" />	
+				<field showon="type_color:var" name="backgroundvar" type="text" default="" 
+					label="SPACCBUTTONVARCOLOR" description="SPACCBUTTONVARCOLORDESC" 
+					validate="variable"/>
+				<field showon="type_color:var" name="selbgvar" type="text" default="" 
+					label="SPACCBUTTONVARSEL" description="SPACCBUTTONVARSELDESC" 
+					validate="variable"/>
+				<field showon="type_color:var" name="chrvar" type="text" default="" 
+					label="SPACCTEXTVAR" description="SPACCTEXTVARDESC" 
+					validate="variable"/>
 				<field name="fontsize" type="text" default="15px"
 					label="CGFONTSIZE"
 					description="CGFONTSIZEDESC" />					

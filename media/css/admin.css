@@ -1,0 +1,38 @@
+/**
+ * @Simple Accordeon content plugin for Joomla 4.x/5.x
+ * @license https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
+ * @copyright (c) 2025 ConseilGouz. All Rights Reserved.
+ * @author ConseilGouz 
+ */
+#general .control-group:nth-of-type(4) {width:50%}
+
+#general .control-group:nth-of-type(6),
+#general .control-group:nth-of-type(9) { /* button's color */
+	width: 30%;
+    float: left;
+    margin-right: 1em;	
+}
+#general .control-group:nth-of-type(7),
+#general .control-group:nth-of-type(10) { /* button's hover/selected color */
+	width: 35%;
+    float: left;
+    margin-right: 1em;	
+}
+#general .control-group:nth-of-type(8),
+#general .control-group:nth-of-type(11) { /* font color */
+	width: 30%;
+    float: left;
+}
+#general .control-group:nth-of-type(6) .control-label,
+#general .control-group:nth-of-type(7) .control-label,
+#general .control-group:nth-of-type(8) .control-label,
+#general .control-group:nth-of-type(9) .control-label,
+#general .control-group:nth-of-type(10) .control-label,
+#general .control-group:nth-of-type(11) .control-label { 
+	width: 100%;
+}
+#general .control-group:nth-of-type(12) { /* font color */
+	width: 40%;
+	clear:both;
+}
+

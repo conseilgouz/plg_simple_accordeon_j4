@@ -1,9 +1,8 @@
 <?php
 /**
 * Simple Accordeon Plugin  - Joomla 4.x/5.x plugin
-* Version			: 2.1.2
 * Package			: Simple Accordeon Plugin
-* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // No direct access to this file
@@ -179,5 +178,17 @@ class plgcontentsimpleaccordeonInstallerScript
 		$db->execute();
 		Factory::getCache()->clean('_system');
 	}
+    public function delete($files = [])
+    {
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                Folder::delete($file);
+            }
+
+            if (is_file($file)) {
+                File::delete($file);
+            }
+        }
+    }
 	
 }

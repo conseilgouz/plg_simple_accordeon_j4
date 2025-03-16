@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		2.1.0
  * @package		Simple Accordeon content plugin
  * @author		ConseilGouz
- * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
+ * @copyright	Copyright (C) 2025 ConseilGouz. All rights reserved.
  * @license		GNU/GPL v2; see LICENSE.php
  **/
 namespace ConseilGouz\Plugin\Content\Simpleaccordeon\Extension;
@@ -31,9 +30,15 @@ class Simpleaccordeon extends CMSPlugin {
 			/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 			$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 			$wa->registerAndUseStyle('simpleaccordeon', $plg.'/css/simpleaccordeon.css');
-			$bgcolor = $this->params->get('backgroundcolor','#eeeeee'); 
-			$chrcolor = $this->params->get('chrcolor','#000000'); 
-			$selbgcolor = $this->params->get('selbgcolor','#c7c7bf'); 
+			if ($this->params->get('type_color','pick') == 'pick') {
+				$bgcolor = $this->params->get('backgroundcolor','#eeeeee'); 
+				$chrcolor = $this->params->get('chrcolor','#000000'); 
+				$selbgcolor = $this->params->get('selbgcolor','#c7c7bf'); 
+			} else {
+				$bgcolor = 'var('.$this->params->get('backgroundvar','--bs-info-bg-subtle').')'; 
+				$chrcolor = 'var('.$this->params->get('chrvar','--bs-primary').')'; 
+				$selbgcolor = 'var('.$this->params->get('selbgvar','--bs-gray-500').')'; 
+			}
 			$fontsize = $this->params->get('fontsize','15px'); 
 			$wa->addInLineStyle('button.accordeon {background-color: '.$bgcolor.';color:'.$chrcolor.';font-size:'.$fontsize.';line-height:'.$fontsize.'}');
 			$wa->addInLineStyle('button.accordeon:not(.collapsed), button.accordeon:hover {background-color: '.$selbgcolor.' !important;}');
