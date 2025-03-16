@@ -3,7 +3,7 @@
  * Content Accordeon plugin
  *
  * @author     ConseilgGouz
- * @copyright (C) 2023 www.conseilgouz.com. All Rights Reserved.
+ * @copyright (C) 2025 www.conseilgouz.com. All Rights Reserved.
  * @license    GNU/GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
  */
 
@@ -22,7 +22,8 @@ class VariableRule extends FormRule
     {
         // get showon to find field name
         // $showon = (string)$element['showon'];
-        $type = $input->get('type_color');
+        $params = $input->get('params');
+        $type = $params->type_color;
         if ($type  == 'pick') { // color picker : exit
             return true;
         }

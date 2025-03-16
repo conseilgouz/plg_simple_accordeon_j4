@@ -7,7 +7,7 @@
 	<license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>2.2.0</version>
+	<version>2.2.1</version>
 	<description>SPACCDESC</description>
 	<namespace path="src">ConseilGouz\Plugin\Content\Simpleaccordeon</namespace>	
 	<files>
