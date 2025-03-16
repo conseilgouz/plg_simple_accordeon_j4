@@ -3,6 +3,18 @@
 		<element>simpleaccordeon</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.2.0</version>
+        <note>
+            <item>Update : 16/03/2025</item>
+        </note>
+        <change>
+            <item>Variable colors</item>
+        </change>
+	</changelog>
+	<changelog>
+		<element>simpleaccordeon</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.1.2</version>
         <note>
             <item>Update : 11/10/2023</item>
