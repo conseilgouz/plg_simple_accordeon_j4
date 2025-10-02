@@ -1,6 +1,6 @@
 <?php
 /**
-* Simple Accordeon Plugin  - Joomla 4.x/5.x plugin
+* Simple Accordeon Plugin  - Joomla 4.x/5.x/6.x plugin
 * Package			: Simple Accordeon Plugin
 * copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
@@ -9,10 +9,11 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\Filesystem\Folder;
-use Joomla\CMS\Version;
-use Joomla\Filesystem\File;
 use Joomla\CMS\Log\Log;
+use Joomla\CMS\Version;
+use Joomla\Database\DatabaseInterface;
+use Joomla\Filesystem\File;
+use Joomla\Filesystem\Folder;
 
 class plgcontentsimpleaccordeonInstallerScript
 {
@@ -22,13 +23,14 @@ class plgcontentsimpleaccordeonInstallerScript
 	private $exttype                 = 'plugin';
 	private $extname                 = 'simpleaccordeon';
 	private $previous_version        = '';
+    private $newlib_version	         = '';
 	private $dir           = null;
 	private $lang;
 	private $installerName = 'plgcontentsimpleaccordeoninstaller';
 	public function __construct()
 	{
 		$this->dir = __DIR__;
-		$this->lang = Factory::getLanguage();
+		$this->lang = Factory::getApplication()->getLanguage();
 		$this->lang->load($this->extname);
 	}
 
@@ -58,12 +60,6 @@ class plgcontentsimpleaccordeonInstallerScript
 			$this->postinstall_cleanup();
 		}
 
-		switch ($type) {
-            case 'install': $message = Text::_('ISO_POSTFLIGHT_INSTALLED'); break;
-            case 'uninstall': $message = Text::_('ISO_POSTFLIGHT_UNINSTALLED'); break;
-            case 'update': $message = Text::_('ISO_POSTFLIGHT_UPDATED'); break;
-            case 'discover_install': $message = Text::_('ISO_POSTFLIGHT_DISC_INSTALLED'); break;
-        }
 		return true;
     }
 	private function postinstall_cleanup() {
@@ -94,7 +90,7 @@ class plgcontentsimpleaccordeonInstallerScript
 			}
 		}
 		// remove obsolete update sites
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		$query = $db->getQuery(true)
 			->delete('#__update_sites')
 			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
@@ -107,7 +103,6 @@ class plgcontentsimpleaccordeonInstallerScript
 		$db->setQuery($query);
 		$db->execute();
 		
-		$db = Factory::getDbo();
         $conditions = array(
             $db->qn('type') . ' = ' . $db->q('plugin'),
             $db->qn('element') . ' = ' . $db->quote('simpleaccordeon')
@@ -159,6 +154,41 @@ class plgcontentsimpleaccordeonInstallerScript
 
 		return true;
 	}
+    private function checkLibrary($library)
+    {
+        $file = $this->dir.'/lib_conseilgouz/conseilgouz.xml';
+        if (!is_file($file)) {// library not installed
+            return false;
+        }
+        $xml = simplexml_load_file($file);
+        $this->newlib_version = $xml->version;
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
+        $conditions = array(
+             $db->qn('type') . ' = ' . $db->q('library'),
+             $db->qn('element') . ' = ' . $db->quote($library)
+            );
+        $query = $db->getQuery(true)
+                ->select('manifest_cache')
+                ->from($db->quoteName('#__extensions'))
+                ->where($conditions);
+        $db->setQuery($query);
+        $manif = $db->loadObject();
+        if ($manif) {
+            $manifest = json_decode($manif->manifest_cache);
+            if ($manifest->version >= $this->newlib_version) { // compare versions
+                return true; // library ok
+            }
+        }
+        return false; // need library
+    }
+    private function installPackage($package)
+    {
+        $tmpInstaller = new Joomla\CMS\Installer\Installer();
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
+        $tmpInstaller->setDatabase($db);
+        $installed = $tmpInstaller->install($this->dir . '/' . $package);
+        return $installed;
+    }
 	private function uninstallInstaller()
 	{
 		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
@@ -168,7 +198,7 @@ class plgcontentsimpleaccordeonInstallerScript
 			JPATH_PLUGINS . '/system/' . $this->installerName . '/language',
 			JPATH_PLUGINS . '/system/' . $this->installerName,
 		]);
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		$query = $db->getQuery(true)
 			->delete('#__extensions')
 			->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))

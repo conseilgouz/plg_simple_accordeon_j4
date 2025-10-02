@@ -2,12 +2,12 @@
 <extension version="4.0" type="plugin" group="content" method="upgrade">
 	<name>Contenu - Accordeon dans les articles</name>
 	<author>ConseilGouz</author>
-	<creationDate>2025-03-16</creationDate>
+	<creationDate>2025-10-02</creationDate>
 	<copyright>Copyright (C) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>2.2.1</version>
+	<version>2.3.0</version>
 	<description>SPACCDESC</description>
 	<namespace path="src">ConseilGouz\Plugin\Content\Simpleaccordeon</namespace>	
 	<files>
@@ -32,7 +32,7 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic"
-				addfieldprefix="ConseilGouz\Plugin\Content\Simpleaccordeon\Field"
+				addfieldprefix="ConseilGouz\Library\Field"
 				addruleprefix="ConseilGouz\Plugin\Content\Simpleaccordeon\Rule">
 				<field name="version" type="version"  margintop="-3em"  extension="simpleaccordeon" />
 				<field name="shortcode" type="text" default="accordeon"

@@ -3,6 +3,21 @@
 		<element>simpleaccordeon</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>2.3.0</version>
+        <note>
+            <item>Update : 02/10/2025</item>
+        </note>
+        <fix>
+            <item>Joomla 6.x compatibility</item>
+        </fix>
+		<change>
+			<item>Use ConseilGouz Library</item>
+		</change>
+	</changelog>
+	<changelog>
+		<element>simpleaccordeon</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>2.2.1</version>
         <note>
             <item>Update : 16/03/2025</item>
